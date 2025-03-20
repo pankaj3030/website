@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healingg Stars - Astrology & Numerology</title>
+    <style>
+        :root {
+            --primary-color: #6b3fa0;
+            --secondary-color: #ff8c42;
+            --text-color: #f0f0f0;
+            --dark-bg: #0a1a2c;
+            --gradient-start: #170a35;
+            --gradient-end: #0f243a;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(to bottom, var(--gradient-start), var(--gradient-end));
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+        
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: radial-gradient(2px 2px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+                              radial-gradient(2px 2px at 40px 70px, #ffffff, rgba(0,0,0,0)),
+                              radial-gradient(2px 2px at 60px 110px, #ffffff, rgba(0,0,0,0)),
+                              radial-gradient(2px 2px at 80px 150px, #ffffff, rgba(0,0,0,0)),
+                              radial-gradient(2px 2px at 100px 190px, #ffffff, rgba(0,0,0,0)),
+                              radial-gradient(2px 2px at 120px 230px, #ffffff, rgba(0,0,0,0));
+            background-repeat: repeat;
+            background-size: 200px 200px;
+            animation: twinkle 5s infinite;
+        }
+        
+        @keyframes twinkle {
+            0% { opacity: 0.7; }
+            50% { opacity: 1; }
+            100% { opacity: 0.7; }
+        }
+        
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background-color: rgba(10, 26, 44, 0.8);
+            backdrop-filter: blur(5px);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            width: 60px;
+            height: 60px;
+            margin-right: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.6rem;
+            color: var(--text-color);
+            font-weight: 600;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin: 0 15px;
+        }
+        
+        nav ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: 0.3s;
+            position: relative;
+        }
+        
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary-color);
+            transition: 0.3s;
+        }
+        
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+        
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            max-width: 1000px;
+            padding: 0 20px;
+        }
+        
+        .hero-content h1 {
+            font-size: 2.7rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #a18cd1, #fbc2eb);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: fadeInDown 1s ease;
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease 0.3s forwards;
+            opacity: 0;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .zodiac-wheel {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 550px;
+            height: 550px;
+            animation: rotate 60s linear infinite;
+            z-index: 1;
+            opacity: 0.4;
+        }
+        
+        @keyframes rotate {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+        
+        .btn {
+            padding: 12px 30px;
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+        
+        .btn:hover {
+            background-color: #ff7324;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 140, 66, 0.4);
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 140, 66, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(255, 140, 66, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 140, 66, 0);
+            }
+        }
+        
+        section {
+            padding: 100px 5%;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+        
+        .section-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+            color: #c5c5c5;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background: rgba(26, 41, 66, 0.5);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .service-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .service-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .service-card:hover .service-img img {
+            transform: scale(1.1);
+        }
+        
+        .service-content {
+            padding: 20px;
+        }
+        
+        .service-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        
+        .service-content p {
+            color: #c5c5c5;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+        
+        .service-subheadings {
+            margin-top: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .service-subheadings li {
+            color: #c5c5c5;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            list-style-type: none;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .service-subheadings li:before {
+            content: '✧';
+            position: absolute;
+            left: 0;
+            color: var(--secondary-color);
+        }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .about-img {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        
+        .about-img img {
+            width: 100%;
+            display: block;
+            border-radius: 15px;
+            transition: transform 0.5s ease;
+        }
+        
+        .about-img:hover img {
+            transform: scale(1.05);
+        }
+        
+        .about-content h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .about-content p {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        /* Featured zodiac wheel section */
+        .zodiac-section {
+            padding: 80px 5%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background: rgba(10, 26, 44, 0.5);
+            margin: 40px 0;
+        }
+        
+        .zodiac-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+        
+        .zodiac-wheel-static {
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            position: relative;
+        }
+        
+        .zodiac-wheel-static img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 50%;
+            box-shadow: 0 0 30px rgba(107, 63, 160, 0.5);
+        }
+        
+        .zodiac-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .zodiac-info h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+        
+        .zodiac-info p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+            color: #c5c5c5;
+        }
+        
+        /* Why Us section styles */
+        .why-us-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .why-us-item {
+            background: rgba(26, 41, 66, 0.5);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .why-us-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .why-us-item:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+        }
+        
+        .why-us-item h3 {
+            font-size: 1.5rem;
+            margin: 20px 0;
+            color: var(--text-color);
+        }
+        
+        .why-us-item p {
+            color: #c5c5c5;
+            line-height: 1.6;
+        }
+        
+        .icon-circle {
+            width: 80px;
+            height: 80px;
+            background: rgba(107, 63, 160, 0.2);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            font-size: 2rem;
+            color: var(--secondary-color);
+        }
+        
+        .testimonials {
+            background: linear-gradient(to right, rgba(23, 10, 53, 0.7), rgba(15, 36, 58, 0.7));
+            padding: 100px 5%;
+            position: relative;
+        }
+        
+        .testimonial-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .testimonial {
+            padding: 30px;
+            border-radius: 15px;
+            background-color: rgba(26, 41, 66, 0.5);
+            margin-bottom: 30px;
+        }
+        
+        .testimonial p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .client-name {
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+        
+        .contact {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+        
+        .contact-form {
+            background-color: rgba(26, 41, 66, 0.5);
+            padding: 30px;
+            border-radius: 15px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 5px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-color);
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .map {
+            border-radius: 15px;
+            overflow: hidden;
+            height: 400px;
+        }
+        
+        .map img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        footer {
+            background-color: var(--dark-bg);
+            padding: 50px 5% 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary-color);
+        }
+        
+        .footer-col p, .footer-col a {
+            color: #a0a0a0;
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        
+        .footer-col a:hover {
+            color: var(--secondary-color);
+            transform: translateX(5px);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #a0a0a0;
+            font-size: 0.9rem;
+        }
+        
+        @media screen and (max-width: 991px) {
+            .hero-content h2 {
+                font-size: 2.5rem;
+            }
+            
+            .zodiac-wheel {
+                width: 300px;
+                height: 300px;
+            }
+            
+            .zodiac-wheel-static {
+                width: 300px;
+                height: 300px;
+            }
+            
+            .about-grid, .contact {
+                grid-template-columns: 1fr;
+            }
+            
+            .why-us-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .zodiac-container {
+                flex-direction: column;
+            }
+        }
+        
+        @media screen and (max-width: 768px) {
+            header {
+                padding: 15px 5%;
+            }
+            
+            .logo h1 {
+                font-size: 1.2rem;
+            }
+            
+            nav ul li {
+                margin: 0 8px;
+            }
+            
+            .hero-content h2 {
+                font-size: 2rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
+            
+            section {
+                padding: 60px 5%;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .why-us-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .zodiac-wheel-static {
+                width: 250px;
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    
+    <header>
+        <div class="logo">
+            <img src="/Users/abudhabi/Desktop/Healingg Stars/images/logo.png" alt="Healingg Stars Logo"/>
+            <h1>Healingg Stars</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#why-us">Why Us</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="hero" id="home">
+        <img src="/Users/abudhabi/Desktop/Healingg Stars/images/astrologycircle.png" alt="Zodiac Wheel" class="zodiac-wheel"/>
+        <div class="hero-content">
+            <h1>Discover Your Path to Harmony & Success</h1>
+            <p>Discover your cosmic destiny through ancient wisdom and modern spiritual techniques. We guide you towards abundance, clarity, and personal transformation.</p>
+            <a href="#services" class="btn">Explore Services</a>
+        </div>
+    </section>
+    
+    <section id="services">
+        <div class="section-title">
+            <h2>Our Services</h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-img">
+                    <img src="/Users/abudhabi/Desktop/Healingg Stars/images/personalastrology.jpg" alt="Personal Astrology"/>
+                </div>
+                <div class="service-content">
+                    <h3>Personal Astrology</h3>
+                    <p>Gain a deeper understanding of your life path through comprehensive natal chart readings tailored just for you.</p>
+                    <ul class="service-subheadings">
+                        <li>Birth Chart Analysis</li>
+                        <li>Transit & Progression Forecasts</li>
+                        <li>Career & Life Path Guidance</li>
+                        <li>Relationship Compatibility</li>
+                    </ul>
+                    <a href="#" class="btn">Learn More</a>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-img">
+                    <img src="/Users/abudhabi/Desktop/Healingg Stars/images/numerology.jpeg" alt="Numerology Analysis"/>
+                </div>
+                <div class="service-content">
+                    <h3>Numerology Analysis</h3>
+                    <p>Discover how numbers influence your destiny and reveal patterns in your life journey through personalized calculations.</p>
+                    <ul class="service-subheadings">
+                        <li>Life Path & Destiny Numbers</li>
+                        <li>Name Analysis</li>
+                        <li>Compatibility Readings</li>
+                        <li>Personal Year Cycles</li>
+                    </ul>
+                    <a href="#" class="btn">Learn More</a>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-img">
+                    <img src="/Users/abudhabi/Desktop/Healingg Stars/images/eft.jpeg" alt="EFT & TFT"/>
+                </div>
+                <div class="service-content">
+                    <h3>EFT & TFT</h3>
+                    <p>Emotional Freedom Techniques and Thought Field Therapy to release emotional blocks and promote healing.</p>
+                    <ul class="service-subheadings">
+                        <li>Emotional Healing & Stress Reduction</li>
+                        <li>Phobia Treatment</li>
+                        <li>Pain Management</li>
+                        <li>Behavioral & Addictive Disorders</li>
+                        <li>Self-Esteem & Confidence Building</li>
+                    </ul>
+                    <a href="#" class="btn">Learn More</a>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-img">
+                    <img src="/Users/abudhabi/Desktop/Healingg Stars/images/crystal.jpeg" alt="Crystal Healing"/>
+                </div>
+                <div class="service-content">
+                    <h3>Crystal Healing</h3>
+                    <p>Harness the natural energy of crystals to balance your body, mind, and spirit.</p>
+                    <ul class="service-subheadings">
+                        <li>Energy Balancing & Chakra Healing</li>
+                        <li>Emotional Healing</li>
+                        <li>Physical Healing & Pain Relief</li>
+                        <li>Healing for Relationships</li>
+                        <li>Spiritual Healing & Personal Growth</li>
+                    </ul>
+                    <a href="#" class="btn">Learn More</a>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-img">
+                    <img src="/Users/abudhabi/Desktop/Healingg Stars/images/energy.jpeg" alt="Energy Clearing & Healing"/>
+                </div>
+                <div class="service-content">
+                    <h3>Energy Clearing & Healing</h3>
+                    <p>Cleanse and balance your energy field to promote overall wellbeing and spiritual growth.</p>
+                    <ul class="service-subheadings">
+                        <li>Aura & Chakra Cleansing</li>
+                        <li>Physical Healing</li>
+                        <li>Emotional & Mental Healing</li>
+                        <li>Depression & Trauma Healing</li>
+                        <li>Pranic Healing for Pets & Animals</li>
+                    </ul>
+                    <a href="#" class="btn">Learn More</a>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-img">
+                    <img src="/Users/abudhabi/Desktop/Healingg Stars/images/tarotreading.jpeg" alt="Tarot Readings"/>
+                </div>
+                <div class="service-content">
+                    <h3>Tarot Readings</h3>
+                    <p>Gain insights into your past, present, and future through the ancient wisdom of tarot cards.</p>
+                    <ul class="service-subheadings">
+                        <li>Personal Readings</li>
+                        <li>Relationship Readings</li>
+                        <li>Spiritual Guidance & Personal Growth</li>
+                        <li>Angelic Guidance</li>
+                        <li>Chakra & Energy Readings</li>
+                    </ul>
+                    <a href="#" class="btn">Learn More</a>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-img">
+                    <img src="/Users/abudhabi/Desktop/Healingg Stars/images/relationshipcompatibility.jpeg" alt="Relationship Compatibility"/>
+                </div>
+                <div class="service-content">
+                    <h3>Relationship Compatibility</h3>
+                    <p>Understand your relationship dynamics through synastry charts and numerological compatibility analysis.</p>
+                    <ul class="service-subheadings">
+                        <li>Astrological Synastry</li>
+                        <li>Numerological Compatibility</li>
+                        <li>Relationship Timing</li>
+                        <li>Conflict Resolution Guidance</li>
+                    </ul>
+                    <a href="#" class="btn">Learn More</a>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-img">
+                    <img src="/Users/abudhabi/Desktop/Healingg Stars/images/business.jpeg" alt="Business Astrology"/>
+                </div>
+                <div class="service-content">
+                    <h3>Business Astrology</h3>
+                    <p>Align your business decisions with cosmic timing to maximize success and minimize challenges.</p>
+                    <ul class="service-subheadings">
+                        <li>Business Timing</li>
+                        <li>Partnership Compatibility</li>
+                        <li>Financial Forecasting</li>
+                        <li>Career Path Analysis</li>
+                    </ul>
+                    <a href="#" class="btn">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="about">
+        <div class="section-title">
+            <h2>About Us</h2>
+        </div>
+        <div class="about-grid">
+            <div class="about-img">
+                <img src="/api/placeholder/500/400" alt="About Healingg Stars"/>
+            </div>
+            <div class="about-content">
+                <h3>Healingg Stars</h3>
+                <p>We are Healingg Stars, a dedicated team of experienced astrologers and numerologists passionate about guiding you through life's journey using ancient wisdom and cosmic insights.</p>
+                <p>With over two decades of combined experience, our practitioners have helped thousands of clients navigate important life decisions, understand relationship dynamics, and discover their true purpose.</p>
+                <p>Our approach combines traditional astrological and numerological methods with modern psychological insights to provide you with practical guidance that resonates with your unique life circumstances.</p>
+                <a href="#contact" class="btn">Connect With Us</a>
+            </div>
+        </div>
+    </section>
+    
+    <section id="why-us">
+        <div class="section-title">
+            <h2>Why Choose Us</h2>
+        </div>
+        <p class="section-intro">With our rich experience of 10+ years and 5000+ clients based across India and overseas, you can bank upon us for a few simple reasons:</p>
+        <div class="why-us-container">
+            <div class="why-us-item">
+                <div class="icon-circle">★</div>
+                <h3>Honest Guidance</h3>
+                <p>We provide the most honest and scientific opinion to our clients without any false commitments.</p>
+            </div>
+            <div class="why-us-item">
+                <div class="icon-circle">♥</div>
+                <h3>Dedicated Attention</h3>
+                <p>We give proper time and listen patiently to understand our clients' concerns and situations completely.</p>
+            </div>
+            <div class="why-us-item">
+                <div class="icon-circle">✧</div>
+                <h3>Accessible Solutions</h3>
+                <p>No expensive remedies - we focus on practical and affordable solutions to help you succeed.</p>
+            </div>
+            <div class="why-us-item">
+                <div class="icon-circle">✦</div>
+                <h3>Value-Driven</h3>
+                <p>We give more than value for your money with comprehensive consultations and follow-up support.</p>
+            </div>
+            <div class="why-us-item">
+                <div class="icon-circle">♢</div>
+                <h3>Empowerment Focus</h3>
+                <p>We motivate clients to optimize their potential rather than creating dependencies.</p>
+            </div>
+            <div class="why-us-item">
+                <div class="icon-circle">✴</div>
+                <h3>Authentic Approach</h3>
+                <p>We believe in giving a true picture about the person without sugar-coating reality.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="testimonials" class="testimonials">
+        <div class="section-title">
+            <h2>Testimonials</h2>
+        </div>
+        <div class="testimonial-container">
+            <div class="testimonial">
+                <p>"The astrological guidance I received from Healingg Stars was incredibly accurate and insightful. The reading provided me with clarity during a challenging time and helped me make decisions aligned with my true path."</p>
+                <div class="client-name">- Sarah Johnson</div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact">
+        <div class="section-title">
+            <h2>Contact Us</h2>
+        </div>
+        <div class="contact">
+            <div class="contact-form">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" placeholder="Enter your phone number">
+                </div>
+                <div class="form-group">
+                    <label for="service">Service Interested In</label>
+                    <input type="text" id="service" placeholder="What service are you interested in?">
+                </div>
+                <div class="form-group">
+                    <label for="message">Your Message</label>
+                    <textarea id="message" placeholder="Tell us more about what you're looking for"></textarea>
+                </div>
+                <button type="submit" class="btn">Send Message</button>
+            </div>
+            <div class="map">
+                <img src="/api/placeholder/600/400" alt="Map Location"/>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+<div class="footer-content">
+<div class="footer-col">
+                <h3>Quick Links</h3>
+                <a href="#home">Home</a>
+                <a href="#services">Services</a>
+                <a href="#about">About Us</a>
+                <a href="#why-us">Why Us</a>
+                <a href="#testimonials">Testimonials</a>
+                <a href="#contact">Contact</a>
+            </div>
+
+        
+            <div class="footer-col">
+                <h3>Healingg Stars</h3>
+                <p>Guiding you through life's journey with cosmic wisdom and numerological insights.</p>
+                <div class="social-icons">
+                    <a href="#"><span>FB</span></a>
+                    <a href="#"><span>IG</span></a>
+                    <a href="#"><span>TW</span></a>
+                    <a href="#"><span>YT</span></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Contact Info</h3>
+                <p>123 Cosmic Street, Universe City</p>
+                <p>Phone: +1 (555) 123-4567</p>
+                <p>Email: info@healinggstars.com</p>
+                <p>Hours: Mon-Sat, 9AM - 6PM</p>
+            </div>
+           
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Healingg Stars. All Rights Reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Animation for scrolling effects
+        document.addEventListener('DOMContentLoaded', function() {
+            const serviceCards = document.querySelectorAll('.service-card');
+            const whyUsItems = document.querySelectorAll('.why-us-item');
+            
+            // Simple animation on scroll
+            window.addEventListener('scroll', function() {
+                // Add any scroll-based animations here
+            });
+            
+            // Add animation to each service card
+            serviceCards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(50px)';
+                    setTimeout(() => {
+                        card.style.transition = 'all 0.5s ease';
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 100);
+                }, index * 200);
+            });
+            
+            // Add animation to Why Us items
+            whyUsItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(50px)';
+                    setTimeout(() => {
+                        item.style.transition = 'all 0.5s ease';
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    }, 100);
+                }, index * 200);
+            });
+        });
+    </script>
+</body>
+</html>
